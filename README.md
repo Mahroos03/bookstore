@@ -1,4 +1,4 @@
-# 📚 BookHaven — E-Commerce Bookstore System
+# 📚 NETH Bookhive — E-Commerce Bookstore System
 
 <div align="center">
 
@@ -53,7 +53,7 @@ cd bookhaven-ecommerce
 ## Current Features
 
 ### 🛍️ E-Commerce Functionality
-- ✅ Product Catalog — 12 sample books with high-quality cover images
+- ✅ Product Catalog — 15 sample books with high-quality cover images
 - ✅ Book Cover Images — covers retrieved from the Open Library Covers API
 - ✅ Shopping Cart — add/remove items and manage quantities
 - ✅ Search & Filter — real-time search, category filters, and price range
@@ -74,7 +74,7 @@ cd bookhaven-ecommerce
 ## Project Structure
 
 ```
-bookhaven-ecommerce/
+NETH-Bookhive/
 ├── index.html          # Main HTML structure
 ├── styles.css          # Complete CSS styling with image optimization
 ├── script.js           # JavaScript functionality with book data
@@ -180,7 +180,7 @@ Quick contributor workflow:
 
 ---
 
-BookHaven E-Commerce Bookstore System  
+NETH Bookhive E-Commerce Bookstore System  
 *Built with ❤️ for book lovers and developers*
 
 [🌐 Live Demo](https://reezmahanan.github.io/bookhaven-ecommerce)
