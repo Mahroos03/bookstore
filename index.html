@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NETH Bookhive</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <!-- Right Section: Search & Actions (Now on Left) -->
+            <div class="nav-right">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search books, authors..." class="search-input">
+                    <i class="fas fa-search search-icon"></i>
+                    <div class="search-suggestions" id="searchSuggestions"></div>
+                    <!-- quick action toggles removed per request -->
+                </div>
+                <div class="user-menu">
+                    <button class="action-btn auth-btn" id="userMenuBtn">
+                        <i class="fas fa-user"></i>
+                        <span id="userDisplayName">Account</span>
+                    </button>
+                    <div class="user-dropdown" id="userDropdown">
+                        <a href="#" onclick="openProfile()"><i class="fas fa-user-edit"></i> Profile</a>
+                        <a href="#" onclick="openOrderHistory()"><i class="fas fa-history"></i> Order History</a>
+                        <a href="#" onclick="openSettings()"><i class="fas fa-cog"></i> Settings</a>
+                        <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Center Section: Main Navigation -->
+            <nav class="nav-center">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#branches" class="nav-link">Branches</a>
+                <a href="#deals" class="nav-link deals-link">
+                    <i class="fas fa-fire"></i> Deals
+                </a>
+                <a href="#books" class="nav-link">Books</a>
+                <a href="#home" class="nav-link">Home</a>
+            </nav>
+
+            <!-- Left Section: Brand & Location (Now on Right) -->
+            <div class="nav-left">
+                <div class="nav-brand">
+                    <i class="fas fa-book"></i>
+                    <span>NETH Bookhive</span>
+                </div>
+                <!-- Left actions removed (compare, wishlist, cart, notifications) to keep a minimal header -->
+                <div class="location-info" onclick="refreshLocation()" title="Click to refresh your location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span id="currentLocation">Sri Lanka</span>
+                    <i class="fas fa-sync-alt location-refresh" id="locationRefreshIcon"></i>
+                </div>
+                <div class="header-cta-right">
+                    <a href="#contact" class="action-btn contact-cta-right" id="contactCtaRight" title="Contact us">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mobile menu toggle removed for minimal header -->
+        </div>
+    </header>
+
+    <!-- header panels removed -->
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Welcome to NETH Bookhive</h1>
+                <p>🧠 Transform Your Mind • 💰 Master Your Money • 🚀 Achieve Your Goals</p>
+                <p>Discover life-changing psychology and finance books from bestselling authors</p>
+                <div class="hero-buttons">
+                    <button class="cta-btn primary" onclick="document.querySelector('.featured-psychology-section').scrollIntoView()">
+                        <i class="fas fa-brain"></i> Psychology Books
+                    </button>
+                    <button class="cta-btn secondary" onclick="document.getElementById('books').scrollIntoView()">
+                        <i class="fas fa-book"></i> All Books
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Psychology & Finance Books Section -->
+    <!-- quick actions were moved to header pill -->
+
+    <section class="featured-psychology-section">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-brain"></i> 🧠 Psychology & Finance Bestsellers</h2>
+                <p>Transform your mindset and master your money with these life-changing books!</p>
+            </div>
+            
+            <div class="psychology-highlights">
+                <div class="highlight-card featured">
+                    <div class="highlight-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="highlight-content">
+                        <h3>"The Psychology of Money" by Morgan Housel</h3>
+                        <p>🏆 Wall Street Journal Bestseller</p>
+                        <p>Discover how your relationship with money shapes your financial life. Essential reading for anyone wanting to understand wealth and happiness.</p>
+                        <div class="highlight-price">
+                            <span class="price">₨1,299</span>
+                            <span class="original-price">₨1,599</span>
+                            <span class="discount">19% OFF</span>
+                        </div>
+                        <button class="highlight-btn" onclick="filterByCategory('non-fiction'); document.getElementById('books').scrollIntoView()">
+                            <i class="fas fa-shopping-cart"></i> Shop Psychology Books
+                        </button>
+                    </div>
+                    <div class="highlight-image">
+                        <img src="https://images.gr-assets.com/books/1581527774l/41881472.jpg" alt="Psychology of Money">
+                    </div>
+                </div>
+                
+                <div class="bestsellers-grid">
+                    <div class="bestseller-item">
+                        <img src="https://images.gr-assets.com/books/1535115320l/40121378.jpg" alt="Atomic Habits">
+                        <h4>Atomic Habits</h4>
+                        <p>James Clear</p>
+                        <div class="rating">★★★★★ 4.9</div>
+                        <div class="price">₨1,399</div>
+                    </div>
+                    <div class="bestseller-item">
+                        <img src="https://images.gr-assets.com/books/1388211242l/69571.jpg" alt="Rich Dad Poor Dad">
+                        <h4>Rich Dad Poor Dad</h4>
+                        <p>Robert Kiyosaki</p>
+                        <div class="rating">★★★★☆ 4.5</div>
+                        <div class="price">₨1,199</div>
+                    </div>
+                    <div class="bestseller-item">
+                        <img src="https://images.gr-assets.com/books/1421842784l/36072.jpg" alt="7 Habits">
+                        <h4>7 Habits of Highly Effective People</h4>
+                        <p>Stephen Covey</p>
+                        <div class="rating">★★★★★ 4.7</div>
+                        <div class="price">₨1,349</div>
+                    </div>
+                    <div class="bestseller-item">
+                        <img src="https://images.gr-assets.com/books/1463241782l/30186948.jpg" alt="Think and Grow Rich">
+                        <h4>Think and Grow Rich</h4>
+                        <p>Napoleon Hill</p>
+                        <div class="rating">★★★★☆ 4.6</div>
+                        <div class="price">₨999</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deals & Discounts Section -->
+    <section class="deals-section" id="deals">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-fire"></i> Hot Deals & Discounts</h2>
+                <p>Limited time offers on your favorite books!</p>
+            </div>
+            
+            <!-- Discount Banner -->
+            <div class="discount-banner">
+                <div class="banner-content">
+                    <div class="discount-info">
+                        <span class="discount-badge">MEGA SALE</span>
+                        <h3>Up to 70% OFF on Selected Books!</h3>
+                        <p>🎉 Christmas Special Offer - Valid until December 31st</p>
+                        <div class="countdown-timer" id="countdownTimer">
+                            <div class="timer-unit">
+                                <span class="timer-number" id="days">13</span>
+                                <span class="timer-label">Days</span>
+                            </div>
+                            <div class="timer-unit">
+                                <span class="timer-number" id="hours">05</span>
+                                <span class="timer-label">Hours</span>
+                            </div>
+                            <div class="timer-unit">
+                                <span class="timer-number" id="minutes">42</span>
+                                <span class="timer-label">Minutes</span>
+                            </div>
+                            <div class="timer-unit">
+                                <span class="timer-number" id="seconds">18</span>
+                                <span class="timer-label">Seconds</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="banner-image">
+                        <i class="fas fa-gift" style="font-size: 6rem; color: #e74c3c;"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Discount Categories -->
+            <div class="discount-categories">
+                <h3>Categories on Sale</h3>
+                <div class="categories-grid">
+                    <div class="category-deal">
+                        <div class="category-icon">
+                            <i class="fas fa-dragon"></i>
+                        </div>
+                        <h4>Sri Lankan Literature</h4>
+                        <div class="discount-percent">40% OFF</div>
+                        <p>Classic Sinhala novels and contemporary works</p>
+                        <button class="shop-category-btn" onclick="filterByCategory('sri-lankan')">Shop Now</button>
+                    </div>
+                    
+                    <div class="category-deal">
+                        <div class="category-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4>Psychology & Self-Help</h4>
+                        <div class="discount-percent">35% OFF</div>
+                        <p>Life-changing psychology and personal development books</p>
+                        <button class="shop-category-btn" onclick="filterByCategory('non-fiction')">Shop Now</button>
+                    </div>
+                    
+                    <div class="category-deal">
+                        <div class="category-icon">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <h4>Science & Education</h4>
+                        <div class="discount-percent">30% OFF</div>
+                        <p>Fascinating science books and educational content</p>
+                        <button class="shop-category-btn" onclick="filterByCategory('science')">Shop Now</button>
+                    </div>
+                    
+                    <div class="category-deal">
+                        <div class="category-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h4>Romance</h4>
+                        <div class="discount-percent">25% OFF</div>
+                        <p>Love stories from around the world</p>
+                        <button class="shop-category-btn" onclick="filterByCategory('romance')">Shop Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Special Offers -->
+            <div class="special-offers">
+                <h3>Special Discount Codes</h3>
+                <div class="offers-grid">
+                    <div class="offer-card">
+                        <div class="offer-header">
+                            <i class="fas fa-graduation-cap"></i>
+                            <h4>Student Discount</h4>
+                        </div>
+                        <div class="offer-code">STUDENT20</div>
+                        <p>20% off for students with valid ID</p>
+                        <button class="copy-code-btn" onclick="copyCode('STUDENT20')">
+                            <i class="fas fa-copy"></i> Copy Code
+                        </button>
+                    </div>
+                    
+                    <div class="offer-card">
+                        <div class="offer-header">
+                            <i class="fas fa-users"></i>
+                            <h4>Bulk Purchase</h4>
+                        </div>
+                        <div class="offer-code">BULK15</div>
+                        <p>15% off when you buy 5+ books</p>
+                        <button class="copy-code-btn" onclick="copyCode('BULK15')">
+                            <i class="fas fa-copy"></i> Copy Code
+                        </button>
+                    </div>
+                    
+                    <div class="offer-card">
+                        <div class="offer-header">
+                            <i class="fas fa-user-plus"></i>
+                            <h4>New Customer</h4>
+                        </div>
+                        <div class="offer-code">WELCOME10</div>
+                        <p>10% off on your first purchase</p>
+                        <button class="copy-code-btn" onclick="copyCode('WELCOME10')">
+                            <i class="fas fa-copy"></i> Copy Code
+                        </button>
+                    </div>
+                    
+                    <div class="offer-card featured-offer christmas">
+                        <div class="offer-header">
+                            <i class="fas fa-gift"></i>
+                            <h4>Holiday Special</h4>
+                        </div>
+                        <div class="offer-code">XMAS30</div>
+                        <p>30% off - Christmas celebration offer</p>
+                        <button class="copy-code-btn" onclick="copyCode('XMAS30')">
+                            <i class="fas fa-copy"></i> Copy Code
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loyalty Program -->
+            <div class="loyalty-program">
+                <div class="loyalty-content">
+                    <div class="loyalty-info">
+                        <h3><i class="fas fa-crown"></i> NETH Bookhive Rewards Program</h3>
+                        <p>Earn points with every purchase and unlock exclusive benefits!</p>
+                        <div class="loyalty-benefits">
+                            <div class="benefit">
+                                <i class="fas fa-coins"></i>
+                                <span>1 point = ₨1 earned</span>
+                            </div>
+                            <div class="benefit">
+                                <i class="fas fa-gift"></i>
+                                <span>Birthday month 2x points</span>
+                            </div>
+                            <div class="benefit">
+                                <i class="fas fa-shipping-fast"></i>
+                                <span>Free shipping for members</span>
+                            </div>
+                            <div class="benefit">
+                                <i class="fas fa-eye"></i>
+                                <span>Early access to sales</span>
+                            </div>
+                        </div>
+                        <button class="join-rewards-btn">Join Rewards Program</button>
+                    </div>
+                    <div class="loyalty-tiers">
+                        <div class="tier">
+                            <div class="tier-icon bronze">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <h4>Bronze</h4>
+                            <p>₨0 - ₨5,000</p>
+                            <span>5% cashback</span>
+                        </div>
+                        <div class="tier">
+                            <div class="tier-icon silver">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <h4>Silver</h4>
+                            <p>₨5,001 - ₨15,000</p>
+                            <span>10% cashback</span>
+                        </div>
+                        <div class="tier active">
+                            <div class="tier-icon gold">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <h4>Gold</h4>
+                            <p>₨15,001+</p>
+                            <span>15% cashback</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Books Section -->
+    <section class="books-section" id="books">
+        <div class="container">
+            <!-- Breadcrumb Navigation -->
+            <nav class="breadcrumb" id="breadcrumb">
+                <a href="#home">Home</a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">All Books</span>
+            </nav>
+
+            <div class="section-header">
+                <h2>Featured Books</h2>
+                <div class="view-options">
+                    <button class="view-btn active" data-view="grid" title="Grid View">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button class="view-btn" data-view="list" title="List View">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Advanced Filters -->
+            <div class="advanced-filters">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label>Category:</label>
+                        <select id="categoryFilter" class="filter-select">
+                            <option value="all">All Categories</option>
+                            <option value="fiction">Fiction</option>
+                            <option value="non-fiction">Non-Fiction</option>
+                            <option value="sri-lankan">Sri Lankan Literature</option>
+                            <option value="psychology">Psychology</option>
+                            <option value="science">Science</option>
+                            <option value="biography">Biography</option>
+                            <option value="economics">Economics</option>
+                            <option value="environmental">Environmental Science</option>
+                            <option value="tamil">Tamil Books</option>
+                            <option value="sinhala">Sinhala Books</option>
+                            <option value="mystery">Mystery</option>
+                            <option value="romance">Romance</option>
+                            <option value="fantasy">Fantasy</option>
+                            <option value="history">Asian History</option>
+                            <option value="spiritual">Spiritual & Philosophy</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label>Author:</label>
+                        <select id="authorFilter" class="filter-select">
+                            <option value="all">All Authors</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label>Rating:</label>
+                        <select id="ratingFilter" class="filter-select">
+                            <option value="all">Any Rating</option>
+                            <option value="4.5">4.5+ Stars</option>
+                            <option value="4.0">4.0+ Stars</option>
+                            <option value="3.5">3.5+ Stars</option>
+                            <option value="3.0">3.0+ Stars</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label>Availability:</label>
+                        <select id="availabilityFilter" class="filter-select">
+                            <option value="all">All Books</option>
+                            <option value="in-stock">In Stock</option>
+                            <option value="low-stock">Low Stock</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label>Sort By:</label>
+                        <select id="sortFilter" class="filter-select">
+                            <option value="featured">Featured</option>
+                            <option value="title">Title A-Z</option>
+                            <option value="title-desc">Title Z-A</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="rating">Highest Rated</option>
+                            <option value="newest">Newest First</option>
+                            <option value="popular">Most Popular</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label>Price Range: ₨<span id="priceMin">0</span> - ₨<span id="priceMax">3000</span></label>
+                        <div class="price-range-container">
+                            <input type="range" id="priceRangeMin" min="0" max="3000" value="0" step="100" class="price-slider">
+                            <input type="range" id="priceRangeMax" min="0" max="3000" value="3000" step="100" class="price-slider">
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <button class="clear-filters-btn" onclick="clearAllFilters()">
+                            <i class="fas fa-times"></i> Clear Filters
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Info -->
+            <div class="results-info">
+                <span id="resultsCount">Showing 15 of 15 books</span>
+                <div class="items-per-page">
+                    <label>Show:</label>
+                    <select id="itemsPerPage">
+                        <option value="8">8 per page</option>
+                        <option value="15" selected>15 per page</option>
+                        <option value="24">24 per page</option>
+                        <option value="48">48 per page</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Books Grid -->
+            <div class="books-grid" id="booksContainer">
+                <!-- Books will be populated by JavaScript -->
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination" id="pagination">
+                <!-- Pagination will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Branches Section -->
+    <section class="branches-section" id="branches">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-store"></i> Our Branches</h2>
+                <p>Visit our physical stores across Sri Lanka</p>
+            </div>
+            
+            <div class="branches-container">
+                <div class="country-section">
+                    <h3><i class="fas fa-flag"></i> Sri Lanka Branches</h3>
+                    <div class="branches-grid">
+                        <div class="branch-card">
+                            <div class="branch-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <h4>Colombo Main Branch</h4>
+                            <p><i class="fas fa-map-marker-alt"></i> 123 Galle Road, Colombo 03</p>
+                            <p><i class="fas fa-phone"></i> +94 11 234 5678</p>
+                            <p><i class="fas fa-clock"></i> Mon-Sat: 9AM-8PM, Sun: 10AM-6PM</p>
+                            <div class="branch-features">
+                                <span class="feature">📚 20,000+ Books</span>
+                                <span class="feature">🅿️ Free Parking</span>
+                                <span class="feature">☕ Reading Café</span>
+                            </div>
+                        </div>
+                        
+                        <div class="branch-card">
+                            <div class="branch-icon">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <h4>Kandy Branch</h4>
+                            <p><i class="fas fa-map-marker-alt"></i> 45 Dalada Veediya, Kandy</p>
+                            <p><i class="fas fa-phone"></i> +94 81 222 3456</p>
+                            <p><i class="fas fa-clock"></i> Mon-Sat: 9AM-7PM, Sun: 10AM-5PM</p>
+                            <div class="branch-features">
+                                <span class="feature">📖 15,000+ Books</span>
+                                <span class="feature">🏛️ Heritage Location</span>
+                                <span class="feature">🎭 Cultural Section</span>
+                            </div>
+                        </div>
+                        
+                        <div class="branch-card">
+                            <div class="branch-icon">
+                                <i class="fas fa-store-alt"></i>
+                            </div>
+                            <h4>Galle Branch</h4>
+                            <p><i class="fas fa-map-marker-alt"></i> 78 Fort Main Street, Galle</p>
+                            <p><i class="fas fa-phone"></i> +94 91 555 7890</p>
+                            <p><i class="fas fa-clock"></i> Mon-Sat: 9AM-7PM, Sun: 10AM-5PM</p>
+                            <div class="branch-features">
+                                <span class="feature">🏰 Fort Location</span>
+                                <span class="feature">🌊 Coastal Views</span>
+                                <span class="feature">📚 Travel Section</span>
+                            </div>
+                        </div>
+                        
+                        <div class="branch-card">
+                            <div class="branch-icon">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <h4>Jaffna Branch</h4>
+                            <p><i class="fas fa-map-marker-alt"></i> 12 Hospital Road, Jaffna</p>
+                            <p><i class="fas fa-phone"></i> +94 21 333 4567</p>
+                            <p><i class="fas fa-clock"></i> Mon-Sat: 9AM-7PM, Sun: 10AM-5PM</p>
+                            <div class="branch-features">
+                                <span class="feature">🈳 Tamil Collection</span>
+                                <span class="feature">📖 Academic Books</span>
+                                <span class="feature">🎓 Student Discounts</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+            </div>
+            
+            <div class="branch-features-section">
+                <h3>Why Visit Our Physical Stores?</h3>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-hands-helping"></i>
+                        <h4>Personal Assistance</h4>
+                        <p>Get personalized book recommendations from our knowledgeable staff</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-book-reader"></i>
+                        <h4>Browse & Read</h4>
+                        <p>Comfortable reading areas to preview books before purchase</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h4>Events & Workshops</h4>
+                        <p>Author meet-ups, book clubs, and literary events</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-gift"></i>
+                        <h4>Exclusive Offers</h4>
+                        <p>Special in-store discounts and loyalty programs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-header">
+                <h2>About NETH Bookhive</h2>
+                <p>Your Premier Online Bookstore</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="about-item">
+                        <div class="about-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <div class="about-info">
+                            <h3>Vast Collection</h3>
+                            <p>Discover thousands of books across all genres, from bestsellers to hidden gems. Our carefully curated collection ensures you'll always find something perfect for your reading journey.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="about-item">
+                        <div class="about-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <div class="about-info">
+                            <h3>Fast Delivery</h3>
+                            <p>Get your books delivered quickly and safely. We offer multiple shipping options to ensure your books reach you when you need them, whether it's next-day or standard delivery.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="about-item">
+                        <div class="about-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="about-info">
+                            <h3>Secure Shopping</h3>
+                            <p>Shop with confidence knowing your personal information is protected. We use industry-standard encryption and secure payment processing for all transactions.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="about-item">
+                        <div class="about-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="about-info">
+                            <h3>Customer First</h3>
+                            <p>Our dedicated customer service team is here to help you find the perfect book and ensure you have an amazing shopping experience with us every time.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-stats">
+                    <div class="stat">
+                        <div class="stat-number">50,000+</div>
+                        <div class="stat-label">Books Available</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">10,000+</div>
+                        <div class="stat-label">Happy Customers</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Customer Support</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">5★</div>
+                        <div class="stat-label">Average Rating</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-envelope"></i> Contact Us</h2>
+                <p>We'd love to hear from you! Get in touch with any questions or feedback.</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Sri Lanka Headquarters</h3>
+                        <p>123 Galle Road, Colombo 03<br>Western Province, Sri Lanka<br>📍 GPS: 6.9271° N, 79.8612° E</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3>Contact Numbers</h3>
+                        <p>🇱🇰 Sri Lanka: +94 11 234-BOOK<br>📞 WhatsApp: +94 77 123 4567<br>🏢 Customer Service: +94 11 789-HELP<br>⏰ Mon-Sat: 9AM-8PM (Sri Lanka Time)</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email Support</h3>
+                        <p>📧 info@bookhaven.lk<br>🛒 orders@bookhaven.lk<br>🎓 academic@bookhaven.lk<br>⚡ Response: Within 2 hours!</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <h3>Delivery Areas</h3>
+                        <p>🇱🇰 All Sri Lankan Provinces<br>� International shipping available<br>🚚 Same-day delivery in Colombo<br>📦 Island-wide: 1-3 business days</p>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contactForm">
+                        <h3><i class="fas fa-paper-plane"></i> Send us a Message</h3>
+                        
+                        <div class="form-group">
+                            <input type="text" id="contactName" placeholder="Your Name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" id="contactEmail" placeholder="Your Email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <select id="contactSubject" required>
+                                <option value="">Select Subject</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="support">Customer Support</option>
+                                <option value="orders">Order Questions</option>
+                                <option value="books">Book Recommendations</option>
+                                <option value="feedback">Feedback</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea id="contactMessage" placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="contact-submit-btn">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Recently Viewed -->
+    <div class="recently-viewed" id="recentlyViewed">
+        <div class="container">
+            <h3><i class="fas fa-clock"></i> Recently Viewed</h3>
+            <div class="recently-viewed-items" id="recentlyViewedItems">
+                <!-- Recently viewed items will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Book Details Modal -->
+    <div class="modal" id="bookModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeBookModal()">&times;</span>
+            <div class="book-details" id="bookDetails">
+                <!-- Book details will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Authentication Modal -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeAuthModal">&times;</span>
+            <div class="auth-container">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" id="loginTab">Login</button>
+                    <button class="auth-tab" id="registerTab">Register</button>
+                </div>
+                
+                <!-- Login Form -->
+                <form class="auth-form" id="loginForm">
+                    <h3>Login to Your Account</h3>
+                    <input type="email" placeholder="Email" required>
+                    <input type="password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                </form>
+
+                <!-- Register Form -->
+                <form class="auth-form hidden" id="registerForm">
+                    <h3>Create New Account</h3>
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="email" placeholder="Email" required>
+                    <input type="password" placeholder="Password" required>
+                    <input type="password" placeholder="Confirm Password" required>
+                    <button type="submit">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeCheckout()">&times;</span>
+            <div class="checkout-container">
+                <h3>Checkout</h3>
+                <form class="checkout-form" id="checkoutForm">
+                    <div class="checkout-section">
+                        <h4>Shipping Information</h4>
+                        <input type="text" placeholder="Full Name" required>
+                        <input type="text" placeholder="Address" required>
+                        <input type="text" placeholder="City" required>
+                        <input type="text" placeholder="Postal Code" required>
+                    </div>
+                    
+                    <div class="checkout-section">
+                        <h4>Payment Information</h4>
+                        <input type="text" placeholder="Card Number" required>
+                        <div class="card-details">
+                            <input type="text" placeholder="MM/YY" required>
+                            <input type="text" placeholder="CVV" required>
+                        </div>
+                    </div>
+                    
+                    <div class="order-summary">
+                        <h4>Order Summary</h4>
+                        <div id="checkoutItems"></div>
+                        <div class="total">Total: $<span id="checkoutTotal">0.00</span></div>
+                    </div>
+                    
+                    <button type="submit" class="place-order-btn">Place Order</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Profile Modal -->
+    <div class="modal" id="profileModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeProfile()">&times;</span>
+            <div class="profile-container">
+                <h3><i class="fas fa-user-edit"></i> My Profile</h3>
+                <!-- Cart/Wishlist/Compare/Notifications removed to keep the layout minimal per user's request -->
+                        <div class="star-rating" id="starRating">
+                            <i class="fas fa-star" data-rating="1"></i>
+                            <i class="fas fa-star" data-rating="2"></i>
+                            <i class="fas fa-star" data-rating="3"></i>
+                            <i class="fas fa-star" data-rating="4"></i>
+                            <i class="fas fa-star" data-rating="5"></i>
+                        </div>
+                    </div>
+                    
+                    <input type="text" placeholder="Review Title" id="reviewTitle" required>
+                    <textarea placeholder="Write your review here..." id="reviewText" rows="6" required></textarea>
+                    
+                    <div class="review-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="recommendBook">
+                            <span class="checkmark"></span>
+                            I recommend this book
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="submit-review-btn">
+                        <i class="fas fa-paper-plane"></i> Submit Review
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeSettings()">&times;</span>
+            <div class="settings-container">
+                <h3><i class="fas fa-cog"></i> Settings</h3>
+                <div class="settings-tabs">
+                    <button class="settings-tab active" onclick="showSettingsTab('account')">Account</button>
+                    <button class="settings-tab" onclick="showSettingsTab('notifications')">Notifications</button>
+                    <button class="settings-tab" onclick="showSettingsTab('privacy')">Privacy</button>
+                </div>
+                
+                <div class="settings-content">
+                    <div class="settings-panel active" id="accountSettings">
+                        <h4>Account Settings</h4>
+                        <div class="setting-item">
+                            <label>Display Name:</label>
+                            <input type="text" id="displayName" placeholder="Your display name">
+                        </div>
+                        <div class="setting-item">
+                            <label>Language:</label>
+                            <select id="language">
+                                <option value="en">English</option>
+                                <option value="es">Spanish</option>
+                                <option value="fr">French</option>
+                                <option value="de">German</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>Currency:</label>
+                            <select id="currency">
+                                <option value="USD">USD ($)</option>
+                                <option value="EUR">EUR (€)</option>
+                                <option value="GBP">GBP (£)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-panel" id="notificationSettings">
+                        <h4>Notification Preferences</h4>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="orderUpdates" checked>
+                            <span class="checkmark"></span>
+                            Order updates
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="promotionalEmails">
+                            <span class="checkmark"></span>
+                            Promotional emails
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="newArrivals">
+                            <span class="checkmark"></span>
+                            New arrivals notifications
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="priceAlerts">
+                            <span class="checkmark"></span>
+                            Price drop alerts
+                        </label>
+                    </div>
+                    
+                    <div class="settings-panel" id="privacySettings">
+                        <h4>Privacy Settings</h4>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="profileVisibility">
+                            <span class="checkmark"></span>
+                            Make profile public
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="reviewVisibility" checked>
+                            <span class="checkmark"></span>
+                            Show my reviews publicly
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="purchaseHistory">
+                            <span class="checkmark"></span>
+                            Share purchase history for recommendations
+                        </label>
+                    </div>
+                </div>
+                
+                <button class="save-settings-btn" onclick="saveSettings()">
+                    <i class="fas fa-save"></i> Save Settings
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notifications removed from header / dropdown to keep header minimal -->
+
+    <!-- Notifications modal removed -->
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <i class="fas fa-check-circle"></i>
+            <span class="toast-message"></span>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Loading...</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <i class="fas fa-book"></i>
+                        <span>NETH Bookhive</span>
+                    </div>
+                    <p>Your destination for quality books and exceptional reading experiences.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#books">Books</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="#">Fiction</a></li>
+                        <li><a href="#">Non-Fiction</a></li>
+                        <li><a href="#">Mystery</a></li>
+                        <li><a href="#">Romance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NETH Bookhive. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p id="loadingText">Loading...</p>
+        </div>
+    </div>
+
+    <!-- Page Loading -->
+    <div class="page-loading" id="pageLoading">
+        <div class="page-loading-content">
+            <div class="book-loader">
+                <div class="book-pages">
+                    <div class="page"></div>
+                    <div class="page"></div>
+                    <div class="page"></div>
+                </div>
+            </div>
+            <h2>NETH Bookhive</h2>
+            <p>Loading your favorite books...</p>
+            <!-- loading progress bar removed -->
+        </div>
+    </div>
+
+    <!-- Page Toggles (Cart / Wishlist / Compare / Notifications / Delivery) -->
+    <div class="page-toggles" id="pageToggles">
+        <button class="toggle-btn" id="cartToggle" title="Cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="count-badge" id="cartCount">0</span>
+        </button>
+        <button class="toggle-btn" id="wishlistToggle" title="Wishlist">
+            <i class="fas fa-heart"></i>
+            <span class="count-badge" id="wishlistCount">0</span>
+        </button>
+        <button class="toggle-btn" id="compareToggle" title="Compare">
+            <i class="fas fa-exchange-alt"></i>
+            <span class="count-badge" id="compareCount">0</span>
+        </button>
+        <button class="toggle-btn" id="notifToggle" title="Notifications">
+            <i class="fas fa-bell"></i>
+            <span class="count-badge" id="notifCount">0</span>
+        </button>
+        <button class="toggle-btn" id="deliveryToggle" title="Delivery">
+            <i class="fas fa-truck"></i>
+        </button>
+
+        <!-- Panels -->
+        <div class="toggle-panel" id="cartPanel">
+            <h4>Cart</h4>
+            <div id="cartItemsContainer">Loading...</div>
+            <div class="panel-footer"><button class="panel-action">View Cart</button></div>
+        </div>
+
+        <div class="toggle-panel" id="wishlistPanel">
+            <h4>Wishlist</h4>
+            <div id="wishlistItemsContainer">Loading...</div>
+        </div>
+
+        <div class="toggle-panel" id="comparePanel">
+            <h4>Compare</h4>
+            <div id="compareItemsContainer">Loading...</div>
+        </div>
+
+        <div class="toggle-panel" id="notificationsPanel">
+            <h4>Notifications</h4>
+            <div id="notificationsContainer">No notifications.</div>
+        </div>
+
+        <div class="toggle-panel" id="deliveryPanel">
+            <h4>Delivery Status</h4>
+            <div id="deliveryStatusContainer">No recent orders.</div>
+        </div>
+    </div>
+
+    <script src="script-new.js"></script>
+</body>
+</html>
