@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Visit_Site-blue?style=for-the-badge)](https://reezmahanan.github.io/bookhaven-ecommerce)
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Visit_Site-blue?style=for-the-badge)](https://reezmahanan.github.io/NETH-Bookhive)
 
 </div>
 
@@ -32,7 +32,7 @@ Complete frontend e-commerce bookstore system built with **HTML5, CSS3, and Java
 
 <div align="center">
 
-### [🌐 LIVE DEMO](https://reezmahanan.github.io/bookhaven-ecommerce) | [📂 SOURCE CODE](https://github.com/reezmahanan/bookhaven-ecommerce)
+### [🌐 LIVE DEMO](https://reezmahanan.github.io/NETH-Bookhive) | [📂 SOURCE CODE](https://github.com/reezmahanan/NETH-Bookhive)
 
 </div>
 
@@ -42,8 +42,8 @@ Complete frontend e-commerce bookstore system built with **HTML5, CSS3, and Java
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/reezmahanan/bookhaven-ecommerce.git
-cd bookhaven-ecommerce
+git clone https://github.com/reezmahanan/NETH-Bookhive.git
+cd NETH-Bookhive
 ```
 2. Open `index.html` in your browser (double-click or use a local dev server such as Live Server).
 3. Start browsing and using the store—add items to the cart, test the checkout flow, and explore search/filter features.
@@ -94,7 +94,7 @@ NETH-Bookhive/
 
 ## Future Implementation
 
-Transform BookHaven into a full-stack e-commerce platform. Suggested next steps and features to implement.
+Transform NETH Bookhive into a full-stack e-commerce platform. Suggested next steps and features to implement.
 
 ### 🗄️ Backend & Database
 - [ ] Database setup — PostgreSQL or MongoDB for books, users, and orders
@@ -148,8 +148,8 @@ Quick contributor workflow:
 ## Deployment
 
 ### GitHub Pages (Current)
-- Repository: https://github.com/reezmahanan/bookhaven-ecommerce
-- Live site: https://reezmahanan.github.io/bookhaven-ecommerce
+- Repository: https://github.com/reezmahanan/NETH-Bookhive
+- Live site: https://reezmahanan.github.io/NETH-Bookhive
 
 ### Other Options
 - Netlify — drag & drop deployment
